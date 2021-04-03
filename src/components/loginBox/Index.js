@@ -21,6 +21,9 @@ const BackDrop = styled.div`
     display:flex;
     flex-direction: column;
     border-radius: 50%;
+    transform: rotate(60deg);
+    top: -290px;
+    left: -70px;
     background: rgb(241, 196, 15);
     background: linear-gradient(
         58deg,
@@ -29,24 +32,52 @@ const BackDrop = styled.div`
     );
 `;
 
+const HeaderContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+`;
+
+const HeaderText = styled.h2`
+    font-size: 30px;
+    font-weight: 600;
+    font-family: Poppins;
+    line-height: 1.24;
+    color: #fff;
+    z-index: 10;
+    margin: 0px;
+`;
+
+const SmallText = styled.h5`
+    color: #fff;
+    font-weight: 500;
+    font-size: 11px;
+    z-index: 10;
+    margin:0px;
+    margin-top:7px;
+`;
+
 const TopContainer = styled.div`
     width:100%;
-    height: 250px;
+    height: 150px; 
     display:flex;
     flex-direction:column;
     justify-content: flex-end;
     padding:0 1.8em;
     padding-bottom: 5em;
-`;
+`; //height 250px
 
 
 function LoginBox(props){
     return (
         <LoginBoxContainer>
             <TopContainer>
-                <BackDrop>
-
-                </BackDrop>
+                <BackDrop/>
+                <HeaderContainer>
+                    <HeaderText>Welcome</HeaderText>
+                    <HeaderText>Back</HeaderText>
+                    <SmallText>Please sign-in to continue</SmallText>
+                </HeaderContainer>
             </TopContainer>
         </LoginBoxContainer>
     )

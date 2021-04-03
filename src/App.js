@@ -7,6 +7,7 @@ import './App.css';
 
 const AppContainer = styled.div`
   width:100%;
+  margin-top: 80px;
   height: 100%;
   display: flex;
   flex-direction:column
