@@ -8,7 +8,7 @@ export const BoxContainer = styled.div`
     margin-top; 10px;
 `;
 
-export const FormContainer = styled.form = styled.form`
+export const FormContainer = styled.form`
     width:100%;
     display:flex;
     flex-direction: column;
@@ -32,7 +32,7 @@ export const Input = styled.input`
     height: 42px;
     width:100%;
     outline: none;
-    border: 1px solid rgba(200, 200, 200, 0.0.3);
+    border: 1px solid rgba(200, 200, 200, 0.3);
     padding: 0px 10px;
     border-bottom: 1.4px solid transparent;
     
@@ -71,3 +71,5 @@ export const SubmitButton = styled.button`
         filter: brightness(1.03);
     }
 `;
+
+

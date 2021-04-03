@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
 
+import LoginForm from "./loginForm";
+
 
 const LoginBoxContainer = styled.div`
     width: 280px;
@@ -59,13 +61,20 @@ const SmallText = styled.h5`
 
 const TopContainer = styled.div`
     width:100%;
-    height: 150px; 
+    height: 250px; 
     display:flex;
     flex-direction:column;
     justify-content: flex-end;
     padding:0 1.8em;
     padding-bottom: 5em;
 `; //height 250px
+
+const InnerContainer = styled.div`
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    padding: 0 1.8em;
+`;
 
 
 function LoginBox(props){
@@ -79,6 +88,9 @@ function LoginBox(props){
                     <SmallText>Please sign-in to continue</SmallText>
                 </HeaderContainer>
             </TopContainer>
+            <InnerContainer>
+                <LoginForm/>
+            </InnerContainer>
         </LoginBoxContainer>
     )
 
