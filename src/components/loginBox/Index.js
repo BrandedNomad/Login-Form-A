@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
+import {motion} from 'framer-motion'
+
 
 import LoginForm from "./loginForm";
+import {BoxContext} from "./Context";
 
 
 const LoginBoxContainer = styled.div`
@@ -16,7 +19,7 @@ const LoginBoxContainer = styled.div`
     overflow: hidden;
 `;
 
-const BackDrop = styled.div`
+const BackDrop = styled(motion.div)`
     width: 160%;
     height: 550px;
     position: absolute;
@@ -76,22 +79,80 @@ const InnerContainer = styled.div`
     padding: 0 1.8em;
 `;
 
+const backdropVariants = {
+    expanded: {
+        width: "233%",
+        height: "1050px",
+        borderRadius:"20%",
+        transform:"rotate(60deg)"
+    },
+    collapsed:{
+        width:"160%",
+        height:"550px",
+        borderRadius:"50%",
+        transform: "rotate(60deg"
+    }
+}
+
+const expandingTransition ={
+    type:'spring',
+    duration:2.3,
+    stiffness: 30,
+}
+
 
 function LoginBox(props){
+    const [isExpanded, setExpanded] = useState(false)
+    const [active, setActive] = useState("signin")
+
+    const playExpandingAnimation = ()=>{
+        setExpanded(true)
+        setTimeout(()=>{
+            setExpanded(false)
+        },expandingTransition.duration * 1000 - 1500)
+    }
+
+    const switchToSignup = ()=>{
+        playExpandingAnimation();
+        setTimeout(()=>{
+            setActive('signup')
+
+        },400)
+
+    }
+
+    const switchToSignin = ()=>{
+        playExpandingAnimation();
+        setTimeout(()=>{
+            setActive('signin')
+        },400)
+    }
+
+    const contextValue = {switchToSignup,switchToSignin}
+
     return (
-        <LoginBoxContainer>
-            <TopContainer>
-                <BackDrop/>
-                <HeaderContainer>
-                    <HeaderText>Welcome</HeaderText>
-                    <HeaderText>Back</HeaderText>
-                    <SmallText>Please sign-in to continue</SmallText>
-                </HeaderContainer>
-            </TopContainer>
-            <InnerContainer>
-                <LoginForm/>
-            </InnerContainer>
-        </LoginBoxContainer>
+        <BoxContext.Provider value={contextValue}>
+            <LoginBoxContainer>
+                <TopContainer>
+                    <BackDrop
+                        initial={false}
+                        animate={ isExpanded ? 'expanded': 'collapsed'}
+                        variants={backdropVariants}
+                        transition={expandingTransition}
+                    />
+                    <HeaderContainer>
+                        <HeaderText>Welcome</HeaderText>
+                        <HeaderText>Back</HeaderText>
+                        <SmallText>Please sign-in to continue</SmallText>
+                    </HeaderContainer>
+                </TopContainer>
+                <InnerContainer>
+                    <LoginForm/>
+                    <p onClick={playExpandingAnimation}>Click Me</p>
+                </InnerContainer>
+            </LoginBoxContainer>
+        </BoxContext.Provider>
+
     )
 
 }
