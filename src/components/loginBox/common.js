@@ -35,6 +35,8 @@ export const Input = styled.input`
     border: 1px solid rgba(200, 200, 200, 0.3);
     padding: 0px 10px;
     border-bottom: 1.4px solid transparent;
+    transition: all 200ms ease-in-out;
+    font-size: 12px;
     
     &::placeholder {
         color: rgba(200, 200, 200, 1);
@@ -69,6 +71,10 @@ export const SubmitButton = styled.button`
     
     &:hover {
         filter: brightness(1.03);
+    }
+    
+    &:focus {
+        outline: none;
     }
 `;
 
