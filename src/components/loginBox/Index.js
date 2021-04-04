@@ -4,6 +4,7 @@ import {motion} from 'framer-motion'
 
 
 import LoginForm from "./loginForm";
+import SignupForm from "./signupForm";
 import {BoxContext} from "./Context";
 
 
@@ -140,15 +141,22 @@ function LoginBox(props){
                         variants={backdropVariants}
                         transition={expandingTransition}
                     />
+                    {active === 'signin' &&
                     <HeaderContainer>
                         <HeaderText>Welcome</HeaderText>
                         <HeaderText>Back</HeaderText>
                         <SmallText>Please sign-in to continue</SmallText>
-                    </HeaderContainer>
+                    </HeaderContainer>}
+                    {active === 'signup' &&
+                    <HeaderContainer>
+                        <HeaderText>Create</HeaderText>
+                        <HeaderText>Account</HeaderText>
+                        <SmallText>Please sign-up to continue</SmallText>
+                    </HeaderContainer>}
                 </TopContainer>
                 <InnerContainer>
-                    <LoginForm/>
-                    <p onClick={playExpandingAnimation}>Click Me</p>
+                    {active === "signin" && <LoginForm/>}
+                    {active === "signup" && <SignupForm/>}
                 </InnerContainer>
             </LoginBoxContainer>
         </BoxContext.Provider>
